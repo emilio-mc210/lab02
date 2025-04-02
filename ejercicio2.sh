@@ -3,24 +3,25 @@
 #Verificar que solo sea 1 agumento
 if [ $# -ne 1 ]; then
     echo "Uso: $0 <comando>"
-    #exit 1
+    exit 1
 fi
 
-COMANDO=$1  #Corre el comando en segundo plano
+COMANDO=$1  #Ejecuta el comando en segundo plano
 $COMANDO &
 PID=$!
-#PID=$(ps -e | grep "$COMANDO" | awk '{print $1}')
 
 LOGS="logs.log"
 touch $LOGS #Crea el archivo si no existe
 
 echo "Monitoreando el proceso $1 con PID: $PID"
+
 #Revision periodica del proceso
-while kill -0 $PID 2> /dev/null; do #Si el proceso ya no esta ejecutandose se evita la impresion del error con 2> /dev/null
+while kill -0 $PID 2> /dev/null; do
     HORA=$(date +"%y-%m-%d %H-%M-%S")
     CPU=$(ps -p $PID -o %cpu=)
     MEM=$(ps -p $PID -o %mem=)
     echo "$HORA,$CPU,$MEM" >> "$LOGS"
+    echo "Ejecutando..."
     sleep 0.5
 done
 

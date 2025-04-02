@@ -40,13 +40,13 @@ else
     echo "Creando usuario $USUARIO"
     adduser $USUARIO
 fi
-
+#Agrega usuario al grupo
 echo "Agregando $USUARIO a grupo $GRUPO"
 usermod -a -G $GRUPO $USUARIO
 
 #Pertenencia del archivo
-chown "$USUARIO:$GROUP" "$RUTA"
-echo "Ahora el archivo pertenece a $USUARIO:$GROUP"
+chown "$USUARIO:$GRUPO" "$RUTA"
+echo "Ahora el archivo pertenece al usuario: $USUARIO y grupo: $GRUPO"
 
 #Permisos
 chmod 740 "$RUTA"
