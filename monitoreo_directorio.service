@@ -1,0 +1,9 @@
+[Unit]
+Description=Servicio de Monitoreo de Cambios en Directorios
+After=network.target
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/emilio-marques/Documents/Labos_IE0117/lab02/ejercicio3.sh
+WorkingDirectory=/home/emilio-marques/Documents/Labos_IE0117/lab02
+[Install]
+WantedBy=multi-user.target
