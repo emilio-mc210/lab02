@@ -20,7 +20,7 @@ while kill -0 $PID 2> /dev/null; do
     HORA=$(date +"%y-%m-%d %H-%M-%S")
     CPU=$(ps -p $PID -o %cpu=)
     MEM=$(ps -p $PID -o %mem=)
-    echo "$HORA,$CPU,$MEM" > "$LOGS"
+    echo "$HORA,$CPU,$MEM" >> "$LOGS"
     echo "Ejecutando..."
     sleep 0.5
 done
