@@ -6,8 +6,8 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-COMANDO=$1  #Ejecuta el comando en segundo plano
-$COMANDO &
+COMANDO=$1  
+$COMANDO & #Ejecuta el comando en segundo plano
 PID=$!
 
 LOGS="logs.log"
@@ -20,7 +20,7 @@ while kill -0 $PID 2> /dev/null; do
     HORA=$(date +"%y-%m-%d %H-%M-%S")
     CPU=$(ps -p $PID -o %cpu=)
     MEM=$(ps -p $PID -o %mem=)
-    echo "$HORA,$CPU,$MEM" >> "$LOGS"
+    echo "$HORA,$CPU,$MEM" > "$LOGS"
     echo "Ejecutando..."
     sleep 0.5
 done
